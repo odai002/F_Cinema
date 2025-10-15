@@ -1,10 +1,10 @@
 import 'package:cinema_reservations/Controller/Auth/signup_controller.dart';
 import 'package:cinema_reservations/Core/Constant/colors.dart';
-import 'package:cinema_reservations/View/Widget/CustomTextfailed.dart';
-import 'package:cinema_reservations/View/Widget/CustomeButton.dart';
+import 'package:cinema_reservations/View/Widget/Auth/CustomTextfailed.dart';
+import 'package:cinema_reservations/View/Widget/Auth/CustomeButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../../../Core/Constant/Responsive.dart';
 import '../../../Core/function/validate_input.dart';
 
 class SignUp extends StatelessWidget {
@@ -12,76 +12,152 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double height = Responsive.getHeight(context);
+    final double width = Responsive.getWidth(context);
+
     SignupControllerImp controller = Get.put(SignupControllerImp());
+
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         elevation: 8,
         shadowColor: Colors.black54,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20))
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(width * 0.05),
+            bottomRight: Radius.circular(width * 0.05),
+          ),
         ),
-        title: const Text('Sign Up',style:TextStyle(color:AppColors.grey50),),
+        title: Text(
+          '13'.tr,
+          style: TextStyle(
+            color: AppColors.grey50,
+            fontSize: width * 0.05,
+          ),
+        ),
         centerTitle: true,
-        backgroundColor:AppColors.secondry,
+        backgroundColor: AppColors.secondry,
       ),
-      body:Form(
+      body: Form(
         key: controller.formstate1,
-        child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 30),
-            child:ListView(
-              children:  [
-                const SizedBox(height:15,),
-                const Text("Create Account",textAlign:TextAlign.center,style:TextStyle(fontSize:25,color:AppColors.secondry),)
-                , const SizedBox(height:10,),
-                const Text("Please Fill your information below",textAlign:TextAlign.center,style:TextStyle(fontSize:15,color:AppColors.grey200),),
-                const SizedBox(height:80,),
-                Customtextfailed(iconData: Icons.person, hintText:"Enter your username", lableText: "Username",controller:controller.username,
-                    validator:(val){
-                      return validinput(val!, 3, 15, 'username');}
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: width * 0.04,
+            vertical: height * 0.03,
+          ),
+          child: ListView(
+            children: [
+              SizedBox(height: height * 0.02),
+              Text(
+                "13".tr,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: width * 0.07,
+                  color: AppColors.secondry,
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(height:25,),
-                Customtextfailed(iconData: Icons.email_outlined, hintText:"Enter your Email",
-                  lableText: "Email",controller:controller.email,
-                    validator:(val){
-                      return validinput(val!, 10, 50, 'email');}),
-                const SizedBox(height: 20,),
-                Customtextfailed(iconData: Icons.phone, hintText:"Enter your phoneNumber", lableText: "Phone",controller:controller.phone,
-                    validator:(val){
-                      return validinput(val!, 10, 10, 'phone');}
+              ),
+              SizedBox(height: height * 0.01),
+              Text(
+                "14".tr,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: width * 0.04,
+                  color: AppColors.grey200,
                 ),
-                const SizedBox(height: 20,),
-            GetBuilder<SignupControllerImp>(builder:(controller) =>
-                Customtextfailed(iconData: Icons.remove_red_eye_outlined, hintText: 'Enter your password', lableText: 'Password', controller: controller.password,
-                    onTapIcon:(){
-                      controller.ShowPassword();
-                    },
-                    obscureText:controller.issShowPassword,
-                    validator:(val){
-                      return validinput(val!, 8, 30, "password");}),),
-                const SizedBox(height: 20,),
-                GetBuilder<SignupControllerImp>(builder:(controller) => Customtextfailed(iconData: Icons.remove_red_eye_outlined,
-                  hintText:"Confirm Password",
-                  lableText: "Confirm Password",controller: controller.Confirmpassword,
-                  onTapIcon:(){
+              ),
+              SizedBox(height: height * 0.08),
+
+              // Username
+              Customtextfailed(
+                iconData: Icons.person,
+                hintText: "15".tr,
+                lableText: "16".tr,
+                controller: controller.fullName,
+                validator: (val) {
+                  return validinput(val!, 3, 15, 'username');
+                },
+              ),
+              SizedBox(height: height * 0.03),
+
+              // Email
+              Customtextfailed(
+                iconData: Icons.email_outlined,
+                hintText: "17".tr,
+                lableText: "18".tr,
+                controller: controller.email,
+                validator: (val) {
+                  return validinput(val!, 10, 50, 'email');
+                },
+              ),
+              SizedBox(height: height * 0.025),
+
+              // Phone
+              Customtextfailed(
+                iconData: Icons.phone,
+                hintText: "19".tr,
+                lableText: "20".tr,
+                controller: controller.phoneNumber,
+                validator: (val) {
+                  return validinput(val!, 10, 10, 'phone');
+                },
+              ),
+              SizedBox(height: height * 0.025),
+
+              // Password
+              GetBuilder<SignupControllerImp>(
+                builder: (controller) => Customtextfailed(
+                  iconData: Icons.remove_red_eye_outlined,
+                  hintText: '21'.tr,
+                  lableText: '22'.tr,
+                  controller: controller.password,
+                  onTapIcon: () {
                     controller.ShowPassword();
                   },
-                  obscureText:controller.issShowPassword,
-                    validator:(val){
-                      return validinput(val!, 8, 30, "password");}
-                )),
-                const SizedBox(height:50,),
-                Row(
-                  crossAxisAlignment:CrossAxisAlignment.center,
-                  mainAxisAlignment:MainAxisAlignment.center,
-                  children: [
-                    Customebutton(text: 'Register', onPressed:controller.SignUp),
-                    const SizedBox(width:15,),
-                    Customebutton(text: 'Cancel', onPressed:controller.Cancel),
-                  ],
+                  obscureText: controller.issShowPassword,
+                  validator: (val) {
+                    return validinput(val!, 8, 30, "password");
+                  },
                 ),
-                const SizedBox(height: 20,),
-              ],
-            )
+              ),
+              SizedBox(height: height * 0.025),
+
+              // Confirm Password
+              GetBuilder<SignupControllerImp>(
+                builder: (controller) => Customtextfailed(
+                  iconData: Icons.remove_red_eye_outlined,
+                  hintText: "23".tr,
+                  lableText: "23".tr,
+                  controller: controller.confirmPassword,
+                  onTapIcon: () {
+                    controller.ShowPassword();
+                  },
+                  obscureText: controller.issShowPassword,
+                  validator: (val) {
+                    return validinput(val!, 8, 30, "password");
+                  },
+                ),
+              ),
+              SizedBox(height: height * 0.06),
+
+              // Buttons
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Customebutton(
+                    text: '24'.tr,
+                    onPressed: controller.Register,
+                  ),
+                  SizedBox(width: width * 0.04),
+                  Customebutton(
+                    text: '25'.tr,
+                    onPressed: controller.Cancel,
+                  ),
+                ],
+              ),
+              SizedBox(height: height * 0.03),
+            ],
+          ),
         ),
       ),
     );

@@ -1,9 +1,10 @@
+import 'package:cinema_reservations/View/MainPages/reservation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../Core/Constant/colors.dart';
-import '../Widget/BottomNavBar.dart';
-import '../Widget/movie_card.dart';
+import '../Widget/mainpages/BottomNavBar.dart';
+import '../Widget/movies_category/movie_card.dart';
 
 class MoviesByCategoryPage extends StatelessWidget {
   MoviesByCategoryPage({super.key});
@@ -14,7 +15,6 @@ class MoviesByCategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // أفلام تجريبية الآن (لاحقًا تجيبها من DB أو API)
     final movies = [
       {
         "title": "John Wick 4",
@@ -64,9 +64,9 @@ class MoviesByCategoryPage extends StatelessWidget {
             bottomRight: Radius.circular(20),
           ),
         ),
-        title: Text(
+        title: const Text(
           'Movies in ',
-          style: const TextStyle(color: AppColors.grey50),
+          style: TextStyle(color: AppColors.grey50),
         ),
         centerTitle: true,
         backgroundColor: AppColors.secondry,
@@ -77,7 +77,7 @@ class MoviesByCategoryPage extends StatelessWidget {
           shrinkWrap: true,
           itemCount: movies.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // عمودين
+            crossAxisCount: 2,
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
             childAspectRatio: 0.65,
@@ -90,7 +90,7 @@ class MoviesByCategoryPage extends StatelessWidget {
               time: movie["time"] as String,
               rating: movie["rating"] as double,
               onBook: () {
-                // الآن فقط عرض تجريبي، لاحقًا تربط DB
+                Get.to(() => const ReservationPage());
               },
             );
           },

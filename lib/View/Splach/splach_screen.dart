@@ -1,6 +1,6 @@
+import 'package:cinema_reservations/Core/service/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../Core/Constant/app_route.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,10 +10,13 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
+
+  final MyServices myServices = Get.find();
 
   @override
   void initState() {
@@ -36,9 +39,24 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Get.offAllNamed(AppRoute.Login);
+        _goNext();
       }
     });
+  }
+
+  void _goNext() {
+    String? lang = myServices.sharedPref.getString("lang");
+    bool? isLoggedIn = myServices.sharedPref.getBool("isLoggedIn");
+
+    if (lang == null) {
+      // 🔹 المستخدم لم يختر لغة بعد
+      Get.offAllNamed(AppRoute.Language);
+    } else if (isLoggedIn == true) {
+      Get.offAllNamed(AppRoute.FelimsCategory); // غيّر AppRoute.Home إلى اسم مسارك الرئيسي
+    } else {
+      // 🔹 اختار لغة ولم يسجّل دخول → صفحة تسجيل الدخول
+      Get.offAllNamed(AppRoute.Login);
+    }
   }
 
   @override

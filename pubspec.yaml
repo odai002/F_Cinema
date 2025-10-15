@@ -39,6 +39,9 @@ dependencies:
   dartz:
   lottie:
   flutter_launcher_icons: ^0.14.4
+  http:
+  shared_preferences: ^2.0.15
+  image_picker:
 
 dev_dependencies:
   flutter_test:

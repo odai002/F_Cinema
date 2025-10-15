@@ -1,13 +1,25 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Responsive {
-  static getHeight(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    return height;
+  static double getHeight(BuildContext context) {
+    return MediaQuery.of(context).size.height;
   }
 
-  static getWidth(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    return width;
+  static double getWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width;
+  }
+
+  // 🔹 لتسهيل استخدام النسب — يمكنك أيضاً إضافة:
+  static double heightRatio(BuildContext context, double value) {
+    return getHeight(context) * value;
+  }
+
+  static double widthRatio(BuildContext context, double value) {
+    return getWidth(context) * value;
+  }
+
+  static double textRatio(BuildContext context, double value) {
+    // مقياس نص متناسب مع العرض عادةً
+    return getWidth(context) * value;
   }
 }

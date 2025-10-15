@@ -1,3 +1,4 @@
+import 'package:cinema_reservations/Core/Constant/colors.dart';
 import 'package:flutter/material.dart';
 
 class Customtextfailed extends StatelessWidget {
@@ -25,7 +26,7 @@ class Customtextfailed extends StatelessWidget {
           contentPadding:const EdgeInsets.symmetric(vertical:5,horizontal:18),
           label: Text(lableText),
           hintText:hintText,
-          suffixIcon:  InkWell(onTap: onTapIcon, child: Icon(iconData)),
+          suffixIcon:  InkWell(onTap: onTapIcon, child: Icon(iconData,color:AppColors.secondry,)),
           border:OutlineInputBorder(
             borderRadius:BorderRadius.circular(25),
           )

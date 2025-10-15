@@ -73,7 +73,6 @@ class MovieCard extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
-                // زر الحجز
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(

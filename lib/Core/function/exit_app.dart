@@ -7,7 +7,7 @@ Future<bool> showExitDialog() async {
     AlertDialog(
       backgroundColor:AppColors.primary,
       title: const Text("Exit App",style:TextStyle(color: AppColors.grey50),),
-      content: const Text("Do you want exit App",style:TextStyle(color: AppColors.grey50),),
+      content: const Text("Do you want exit App?",style:TextStyle(color: AppColors.grey50),),
       actions: [
         TextButton(
           onPressed: () {
